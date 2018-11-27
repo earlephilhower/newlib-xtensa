@@ -386,6 +386,12 @@ _DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
 	int internal _AND
 	int *errptr)
 {
+  // Save code space by not keeping strings not too useful on embedded system
+  static char buff[12];
+  snprintf(buff, 12, "%d", errnum);
+  buff[11] = 0; // paranoia
+  return buff;
+#if 0
   char *error;
   extern char *_user_strerror _PARAMS ((int, int, int *));
 
@@ -885,6 +891,7 @@ _DEFUN (_strerror_r, (ptr, errnum, internal, errptr),
     }
 
   return error;
+#endif
 }
 
 char *
