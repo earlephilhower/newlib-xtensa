@@ -6,7 +6,7 @@ INCLUDES = $(NEWLIB_CFLAGS) $(CROSS_CFLAGS) $(TARGET_CFLAGS)
 
 noinst_LIBRARIES = lib.a
 
-lib_a_SOURCES = stdio_pgmspace.c string_pgmspace.c _atexit.c creat.c isatty.c clibrary_init.c lock.c
+lib_a_SOURCES = stdio_pgmspace.c string_pgmspace.c _atexit.c creat.c isatty.c clibrary_init.c lock.c fnmatch.c collate.c collcmp.c
 
 all: crt0.o
 
