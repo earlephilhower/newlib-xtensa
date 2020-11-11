@@ -53,7 +53,7 @@ _DEFUN (_tzset_r, (reent_ptr),
   if (*tzenv == ':')
     ++tzenv;  
 
-  if (sscanf (tzenv, "%10[^0-9,+-]%n", __tzname_std, &n) <= 0)
+  if (sscanf (tzenv, "%10[^0-9,+-<>]%n", __tzname_std, &n) <= 0)
     {
       TZ_UNLOCK;
       return;
@@ -83,7 +83,7 @@ _DEFUN (_tzset_r, (reent_ptr),
   _tzname[0] = __tzname_std;
   tzenv += n;
   
-  if (sscanf (tzenv, "%10[^0-9,+-]%n", __tzname_dst, &n) <= 0)
+  if (sscanf (tzenv, "%10[^0-9,+-<>]%n", __tzname_dst, &n) <= 0)
     { /* No dst */
       _tzname[1] = _tzname[0];
       _timezone = tz->__tzrule[0].offset;
